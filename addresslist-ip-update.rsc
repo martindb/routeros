@@ -2,7 +2,7 @@
 # RouterOS script: addresslist-ip-update
 #
 # update dinamic ips of address list if changed
-# https://github.com/martindb/routeros/blob/main/addresslist-ip-update
+# https://github.com/martindb/routeros/blob/main/doc/addresslist-ip-update.md
 
 :global GlobalFunctionsReady;
 :while ($GlobalFunctionsReady != true) do={ :delay 500ms; }
