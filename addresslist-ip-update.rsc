@@ -11,7 +11,7 @@
 :global SendNotification;
 :global SymbolForNotification;
 :global LogPrintExit2;
-:global ParseKeyValueStore
+:global ParseKeyValueStore;
 :global IsFullyConnected;
 
 $LogPrintExit2 debug $0 "Init" false;
