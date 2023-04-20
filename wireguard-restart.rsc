@@ -1,7 +1,7 @@
 #!rsc by RouterOS
 # RouterOS script: wireguard-restart
 #
-# update dinamic ips of address list if changed
+# restart wireguard peers if there is not handshake in last 3 minutes
 # https://github.com/martindb/routeros/blob/main/doc/wireguard-restart.md
 
 :local 0 "wireguard-restart";
