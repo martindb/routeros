@@ -1,7 +1,7 @@
 #!rsc by RouterOS
 # RouterOS script: freedns-update
 #
-# update freedns.afraid.org if public IP changed
+# update http://freedns.afraid.org if public IP changed
 # https://github.com/martindb/routeros/blob/main/doc/freedns-update.md
 
 :local 0 "freedns-update";
@@ -18,6 +18,10 @@
 :global IsFullyConnected;
 
 $LogPrintExit2 debug $0 "Init" false;
+
+:if ([:typeof $FreeDnsKey] != "str") do={
+  $LogPrintExit2 warning $0 ("FreeDnsKey not defined/loaded") true;
+}
 
 :if ([$IsFullyConnected] = true) do={
   :foreach Interface in=[/interface/find where comment~"freedns" !disabled] do={

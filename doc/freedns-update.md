@@ -7,9 +7,10 @@ Updates freedns.afraid.org dyndns service
 Description
 -----------
 
-This script evaluates if the public ip has changed and update the A record in freedns.afraid.org DNS service.
-Thi only happens if there is fully connectivity (default gateway is reachable, dns is resolving, time is in sync).
+This script evaluates if the public ip has changed and update the A record in http://freedns.afraid.org DNS service.
+This only happens if there is fully connectivity (default gateway is reachable, dns is resolving, time is in sync).
 
+Note: This script was developed/tested with original version of freedns service. May not work with v2.
 
 Requirements and installation
 -----------------------------
@@ -27,9 +28,9 @@ Configuration
 -------------
 
 The interface that has the public IP to be updated needs `freedns` word in the comment.
-If you want to receive a notification every time it's restarted, add `notify` label also.
-
-FreeDNS key must be defined in global-config-overlay as:
+If you want to receive a notification every time it's updated add `notify` label also.
+Every A record has a random key in FreeDNS (the long string after update.php?) that you have to define
+inside `global-config-overlay` as:
 
     :global FreeDnsKey "XXX-YOUR-KEY-XXX";
 
