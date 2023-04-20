@@ -28,7 +28,7 @@ $LogPrintExit2 debug $0 "Init" false;
     :if ($NewIp != $CurrentIp) do={
       $LogPrintExit2 info $0 ("$inter ip changed ($CurrentIp -> $NewIp)") false;
       :do {
-        /tool/fetch url=("http://freedns.afraid.org/dynamic/update.php?$FreeDnsKey");
+        /tool/fetch url=("http://freedns.afraid.org/dynamic/update.php?$FreeDnsKey") keep-result=no;
         :local Comment [$ParseKeyValueStore ($InterfaceVal->"comment")];
         :local Notify ($Comment->"notify");
         :if ($Notify = true) do={
