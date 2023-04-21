@@ -7,11 +7,10 @@ RouterOS scripts
 Install
 -------
 
-After you have the base installation you will need also to install the certificate chain from github:
+After you have the base installation you will need also to install the certificate used by github:
 
 ```
-/tool/fetch url=https://raw.githubusercontent.com/martindb/routeros/main/github.io.pem dst-path=github.io.pem;
-/certificate/import file-name=github.io.pem passphrase="";
+$CertificateAvailable "DigiCert TLS Hybrid ECC SHA384 2020 CA1"
 ```
 
 Then you should be able to install any of my scripts in this repo, for example:
