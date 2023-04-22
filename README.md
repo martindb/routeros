@@ -27,6 +27,13 @@ My custom scripts
 * [Update FreeDNS IP](doc/freedns-update.md)
 
 
+Development setup
+-----------------
+
+Check some development tools and tips [here](/DEVSETUP.md).
+
+
+
 License and warranty
 --------------------
 
