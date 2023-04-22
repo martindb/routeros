@@ -25,6 +25,7 @@ My custom scripts
 * [Update IPs in address lists](doc/addresslist-ip-update.md)
 * [Restart stalled wireguard peer](doc/wireguard-restart.md)
 * [Update FreeDNS IP](doc/freedns-update.md)
+* [Renew Lets Encrypt SSL certificate](doc/letsencrypt-renew.md)
 
 
 Development setup
