@@ -8,7 +8,7 @@ Right now I'm using:
   * [Mikrotik RouterOS script](https://marketplace.visualstudio.com/items?itemName=devMike.mikrotik-routeros-script) extension for coloring and code snipets
   * [ftp-sync](https://marketplace.visualstudio.com/items?itemName=lukasz-wronski.ftp-sync) extension (don't use the ftp-sync-improved, it doesn't work with mikrotik)
 
-A very useful feature to config is add ssh key to your mikrotik admin user, so you can use the ftp-sync extension with SCP protocol and can
+A very useful feature to config is to add ssh key to your mikrotik admin user, so you can use the ftp-sync extension with SCP protocol and can
 login trought the Visual Studio Code terminal. Check [Mikrotik documentation about ssh access](https://help.mikrotik.com/docs/display/ROS/SSH).
 
 My ftp-sync config uploads the .rsc file as soon as I save it, and then I can run it with `/import script-name.rsc` from the terminal connected to Mikrotik.
