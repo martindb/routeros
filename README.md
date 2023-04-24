@@ -26,6 +26,7 @@ My custom scripts
 * [Restart stalled wireguard peer](doc/wireguard-restart.md)
 * [Update FreeDNS IP](doc/freedns-update.md)
 * [Renew Lets Encrypt SSL certificate](doc/letsencrypt-renew.md)
+* [Get a notification on every reboot](doc/startup-notify.md)
 
 
 Development setup
