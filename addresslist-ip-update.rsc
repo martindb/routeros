@@ -14,32 +14,35 @@
 :global ParseKeyValueStore;
 :global IsFullyConnected;
 
+:if ([ $IsFullyConnected ] = false) do={
+  $LogPrintExit2 debug $0 ("System is not fully connected, not updating.") false;
+  :return false;
+}
+
 $LogPrintExit2 debug $0 "Init" false;
 
-:if ([ $IsFullyConnected ] = true) do={
-  :foreach ListEntry in=[/ip/firewall/address-list/find where comment~"fqdn=" !disabled] do={  
-    :local ListEntryVal [ /ip/firewall/address-list/get $ListEntry ];
-    :local Comment [ $ParseKeyValueStore ($ListEntryVal->"comment") ];
-    :local Fqdn ($Comment->"fqdn");
-    :local Notify ($Comment->"notify");
-    :local OldIp ($ListEntryVal->"address");
+:foreach ListEntry in=[/ip/firewall/address-list/find where comment~"fqdn=" !disabled] do={  
+  :local ListEntryVal [ /ip/firewall/address-list/get $ListEntry ];
+  :local Comment [ $ParseKeyValueStore ($ListEntryVal->"comment") ];
+  :local Fqdn ($Comment->"fqdn");
+  :local Notify ($Comment->"notify");
+  :local OldIp ($ListEntryVal->"address");
 
-    $LogPrintExit2 debug $0 ("Fqdn: $Fqdn - OldIp: $OldIp - Notify: $Notify") false;
-    
-    :do {
-      :local NewIp [:resolve $Fqdn]
-      $LogPrintExit2 debug $0 ("Fqdn: $Fqdn - OldIp: $OldIp - NewIp: $NewIp") false;
-      :if ($NewIp != $OldIp) do={
-          /ip/firewall/address-list/set $ListEntry address=$NewIp
-          $LogPrintExit2 info $0 ("$Fqdn IP address changed: $OldIp -> $NewIp") false;
-          :if ($Notify = true) do={
-            $SendNotification ([$SymbolForNotification "warning-sign"] . "$Fqdn IP updated")  ("$0: $Fqdn IP address changed: $OldIp -> $NewIp");
-          }
+  $LogPrintExit2 debug $0 ("Fqdn: $Fqdn - OldIp: $OldIp - Notify: $Notify") false;
+  
+  :do {
+    :local NewIp [:resolve $Fqdn]
+    $LogPrintExit2 debug $0 ("Fqdn: $Fqdn - OldIp: $OldIp - NewIp: $NewIp") false;
+    :if ($NewIp != $OldIp) do={
+        /ip/firewall/address-list/set $ListEntry address=$NewIp
+        $LogPrintExit2 info $0 ("$Fqdn IP address changed: $OldIp -> $NewIp") false;
+        :if ($Notify = true) do={
+          $SendNotification ([$SymbolForNotification "warning-sign"] . "$Fqdn IP updated")  ("$0: $Fqdn IP address changed: $OldIp -> $NewIp");
         }
-    } on-error={
-      $LogPrintExit2 warning $0 ("Unable to resolve $Fqdn") false;
-      $SendNotification ([$SymbolForNotification "cross-mark"] . "Unable to resolve $Fqdn")  ("$0: can't update IP of $Fqdn");
-    }
+      }
+  } on-error={
+    $LogPrintExit2 warning $0 ("Unable to resolve $Fqdn") false;
+    $SendNotification ([$SymbolForNotification "cross-mark"] . "Unable to resolve $Fqdn")  ("$0: can't update IP of $Fqdn");
   }
 }
 
