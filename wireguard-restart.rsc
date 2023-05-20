@@ -28,7 +28,7 @@ $LogPrintExit2 debug $0 "Init" false;
   :local inter ($InterfaceVal->"interface");
   :local lasthand ($InterfaceVal->"last-handshake");
   $LogPrintExit2 debug $0 ("Wireguard peer $inter last-hadshake $lasthand") false;
-  $LogPrintExit2 debug $0 ("typeof " . [:put [:typeof $lasthand]]) false;
+  $LogPrintExit2 debug $0 ("typeof " . [:typeof $lasthand]) false;
   # Check timeout or nil
   :if ($lasthand > $Timeout or [:typeof $lasthand] != "time") do={
     $LogPrintExit2 warning $0 ("Restarting $inter") false;
