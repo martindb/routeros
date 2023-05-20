@@ -31,7 +31,7 @@ $LogPrintExit2 debug $0 "Init" false;
   $LogPrintExit2 debug $0 ("typeof " . [:put [:typeof $lasthand]]) false;
   # Check timeout or nil
   :if ($lasthand > $Timeout or [:typeof $lasthand] != "time") do={
-    $LogPrintExit2 info $0 ("Restarting $inter") false;
+    $LogPrintExit2 warning $0 ("Restarting $inter") false;
     /interface/wireguard/peers/disable $Interface;
     :delay 5
     /interface/wireguard/peers/enable $Interface;
